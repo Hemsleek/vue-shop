@@ -1,0 +1,13 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+body {
+  @apply bg-gray-100 h-screen overflow-hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@import "tailwindcss/utilities";
