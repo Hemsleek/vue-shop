@@ -12,5 +12,6 @@
     top: 2.5vh;
     bottom: 2vh;
   };
+  overflow-y:hidden
 }
 </style>

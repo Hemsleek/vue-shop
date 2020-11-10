@@ -9,11 +9,11 @@
             </nav>
 
             <template>
-                <div class="my-2 pl-5">
+                <div class="my-1 pl-5">
                     <p class="">Headphone</p>
                     <p class="text-2xl font-extrabold mt-2">TMA Wireless</p>
                 </div>
-                <div class="flex justify-between items-center pl-5 pr-2 mt-8 mb-4 w-11/12 text-lg">
+                <div class="flex justify-between items-center pl-5 pr-4 mt-8 mb-2 w-11/12 text-lg">
                     <span
                     v-for="(option,optionIndex) in options" :key="`search-option${optionIndex}`"
                     :class="optionIndex===0 ? 'border rounded-md px-4 flex items-center py-1' : 'flex items-center'"
@@ -37,6 +37,25 @@
 
         </header>
 
+        <main class="result px-10 pt-6 result-bg grid grid-cols-2 gap-5">
+            <div v-for="(result , resultIndex) in searchResult" :key="`search-result_${resultIndex}`" class="shadow-md px-3 flex flex-col rounded-xl bg-white">
+                <img :src="result.image" class="result-img mx-auto my-2" alt="result-img">
+                <span v-text="result.name" class="mb-2" />
+                <span v-text="`USD ${result.price}`"/>
+
+                <div class="info mt-5 mb-3 flex items-center justify-between">
+                    <span class="rating flex items-center">
+                        <img src="vectors/rating.svg" class="mr-1" alt="rating">
+                        {{result.rating}}
+                    </span>
+                    <span class="reviews flex items-center">
+                        {{result.reviews}} Reviews
+                    </span>
+                    <img src="vectors/more.svg" alt="more">
+                </div>
+            </div>
+        </main>
+
   </div>
 </template>
 
@@ -45,11 +64,26 @@ export default {
   name: 'SearchResult',
   component: {},
   data: () => ({
-    options: 'Filter,Relevance,Newest,Price'.split(',')
+    options: 'Filter,Relevance,Newest,Price'.split(','),
+    searchResult: [
+      { name: 'TMA-2 HD Wireless', price: 350, image: '/img/tma-2_modular.png', rating: 4.6, reviews: 86 },
+      { name: 'TMA-2 HD Wireless', price: 350, image: '/img/tma-2_modular.png', rating: 4.6, reviews: 86 },
+      { name: 'TMA-2 HD Wireless', price: 350, image: '/img/tma-2_modular.png', rating: 4.6, reviews: 86 },
+      { name: 'TMA-2 HD Wireless', price: 350, image: '/img/tma-2_modular.png', rating: 4.6, reviews: 86 },
+      { name: 'TMA-2 HD Wireless', price: 350, image: '/img/tma-2_modular.png', rating: 4.6, reviews: 86 },
+      { name: 'TMA-2 HD Wireless', price: 350, image: '/img/tma-2_modular.png', rating: 4.6, reviews: 86 }
+    ]
   })
 }
 </script>
 
 <style lang="scss" scoped>
 
+    .result-bg{
+        background:#f3f3f3;
+
+    }
+    .result-img{
+        height:9.3rem;
+    }
 </style>
