@@ -1,21 +1,22 @@
 <template>
     <div class="search-result flex-grow">
         <header :class="{
-            'result-clicked-bg pb-6':resultClicked===true,
-            'bg-white pb-6':resultClicked===false
+            'bg-white pb-6': showCart===true,
+            'bg-white pb-6':resultClicked===false,
+            'result-clicked-bg pb-6':resultClicked===true
         }">
             <nav class="flex items-center justify-between h-20 px-4">
 
-                <img src="/vectors/back.svg" alt="<==" @click=" resultClicked===true? resultClicked=!resultClicked : null" />
+                <img src="/vectors/back.svg" alt="<==" @click=" (showCart===true)?showCart=!showCart:(resultClicked===true)? resultClicked=!resultClicked : null " />
 
-                <img v-if="showCart" src="/vectors/cart.svg" alt="cart" @click="showCart=true"/>
+                <img v-if="!showCart" src="/vectors/cart.svg" alt="cart" @click="showCart=true"/>
 
                 <template v-else>
                     <span class="font-bold text-lg" v-text="`Shopping Cart`" />
                     <span />
                 </template>
             </nav>
-            <template v-if="showCart">
+            <template v-if="!showCart">
                 <template v-if="!resultClicked">
                     <div class="my-1 pl-5">
                         <p class="">Headphone</p>
@@ -54,7 +55,7 @@
             </template>
 
         </header>
-        <template v-if="showCart">
+        <template v-if="!showCart">
             <main class="result px-10 pt-6 result-bg grid grid-cols-2 gap-5" v-if="!resultClicked">
                 <div v-for="(result , resultIndex) in searchResult"             :key="`search-result_${resultIndex}`"
                 class="shadow-md px-3 flex flex-col rounded-xl bg-white"
